@@ -48,7 +48,9 @@ export const NavLink = styled(Link)`
   font-size: 1rem;
 `
 
-export const NavLogo = styled.span`
+export const NavLogo = styled(Link)`
+  font-family: 'Bebas Neue', cursive;
+  text-decoration: none;
   color: #fff;
   justify-self: flex-start;
 `

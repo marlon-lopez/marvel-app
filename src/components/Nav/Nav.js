@@ -19,7 +19,7 @@ const Nav = () => {
     <IconContext.Provider value={{ color: '#fff' }}>
       <NavBar>
         <NavContainer>
-          <NavLogo>Logo</NavLogo>
+          <NavLogo to='/'>Marvel</NavLogo>
           <MobileIcon onClick={() => setClickedBurger(!clickedBurger)}>
             {clickedBurger ? <FaTimes /> : <FaBars />}
           </MobileIcon>
