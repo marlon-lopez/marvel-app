@@ -22,4 +22,24 @@ export const Container = styled.div`
   }
 `
 
+export const ImgWrapper = styled.div`
+  display: flex;
+  max-width: 500px;
+  justify-content: center;
+`
+
+export const TextWrapper = styled.div`
+  max-width: 400px;
+  padding: 0;
+  @media screen and (max-width: 920px) {
+    margin: 24px 0;
+  }
+`
+export const Img = styled.img`
+  width: 100%;
+  max-height: 500px;
+  @media screen and (max-width: 920px) {
+    max-height: 400px;
+  }
+`
 export default GlobalStyles

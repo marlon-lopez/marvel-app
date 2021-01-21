@@ -15,12 +15,18 @@ import {
 
 const Nav = () => {
   const [clickedBurger, setClickedBurger] = useState(false)
+
+  const changeClickedBurger = () => {
+    setClickedBurger(!clickedBurger)
+    document.body.style.overflowY = !clickedBurger ? 'hidden' : 'visible'
+    console.log(clickedBurger)
+  }
   return (
     <IconContext.Provider value={{ color: '#fff' }}>
       <NavBar>
         <NavContainer>
           <NavLogo to='/'>Marvel</NavLogo>
-          <MobileIcon onClick={() => setClickedBurger(!clickedBurger)}>
+          <MobileIcon onClick={changeClickedBurger}>
             {clickedBurger ? <FaTimes /> : <FaBars />}
           </MobileIcon>
           <NavMenu click={clickedBurger}>

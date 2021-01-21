@@ -4,14 +4,17 @@ import { Container } from '../../GlobalStyles'
 import { Link } from 'react-router-dom'
 
 export const NavBar = styled.div`
-  height: 10vh;
+  height: 80px;
   background: #070707;
+  position: sticky;
+  top: 0;
 `
 
 export const NavContainer = styled(Container)`
   display: flex;
   justify-content: space-between;
-  height: 10vh;
+  height: 80px;
+
   color: #fff;
   align-items: center;
   position: relative;
@@ -21,13 +24,14 @@ export const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
+  z-index: 100;
   @media screen and (max-width: 960px) {
     flex-direction: column;
     background: #151515;
     width: 100%;
-    height: 90vh;
-    position: absolute;
-    top: 10vh;
+    height: 100vh;
+    position: fixed;
+    top: 80px;
     left: ${({ click }) => (click ? 0 : '-100%')};
     transition: all 0.5s ease;
   }
@@ -61,9 +65,9 @@ export const MobileIcon = styled.div`
   @media screen and (max-width: 960px) {
     display: block;
     position: absolute;
-    top: 55%;
+    top: 50%;
     right: 0;
-    transform: translate(-100%, -55%);
+    transform: translate(-100%, -50%);
     cursor: pointer;
   }
 `
