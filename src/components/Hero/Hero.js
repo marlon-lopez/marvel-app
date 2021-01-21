@@ -1,13 +1,7 @@
 import React from 'react'
 //styles
-import {
-  HeroSection,
-  HeroContainer,
-  TextWrapper,
-  Text,
-  ImgWrapper,
-  Img,
-} from './styles'
+import { TextWrapper, ImgWrapper, Img } from '../../GlobalStyles'
+import { HeroSection, HeroContainer, Text } from './styles'
 
 const Hero = () => {
   return (
