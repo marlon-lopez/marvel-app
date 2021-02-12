@@ -19,16 +19,27 @@ const slice = createSlice({
       state.loading = false
       state.list = action.payload
     },
+    favoriteAdded: (state, action) => {
+      state.favorite.push(action.payload)
+    },
+    favoriteRemoved: (state, action) => {
+      state.favorite = state.favorite.filter((name) => name !== action.payload)
+    },
   },
 })
 
 let i = 1
-const { charactersRequested, charactersReceived } = slice.actions
+export const {
+  charactersRequested,
+  charactersReceived,
+  favoriteAdded,
+  favoriteRemoved,
+} = slice.actions
 
 export const loadCharacters = () => (dispatch, getState) => {
   dispatch(
     apiCallBegan({
-      url: '/characters?apikey=791e220648b8039c0cc72c8493623e47',
+      url: `/characters?apikey=${process.env.REACT_APP_API_KEY}&limit=18`,
       method: 'GET',
       onStart: charactersRequested.type,
       onSuccess: charactersReceived.type,
