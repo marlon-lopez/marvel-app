@@ -1,18 +1,15 @@
 import axios from 'axios'
 //actions
 import * as actions from '../api'
-let i = 1
 const api = ({ dispatch }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action)
 
-  const { url, method, data, onStart, onSuccess, onError } = action.payload
+  const { url, method, onStart, onSuccess, onError } = action.payload
 
   //check if is loading
   if (onStart) dispatch({ type: onStart })
-  console.log(i++)
 
   next(action)
-  console.log(onSuccess)
   try {
     const response = await axios.request({
       baseURL: `https://gateway.marvel.com:443/v1/public`,

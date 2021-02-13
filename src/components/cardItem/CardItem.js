@@ -3,21 +3,31 @@ import { Img, ImgWrapper } from '../../GlobalStyles'
 import { Card, CardName, CardActions, CardLink } from './styles'
 import FavButton from '../FavButton/FavButton'
 import { useSelector, useDispatch } from 'react-redux'
-import { favoriteAdded, favoriteRemoved } from '../../store/characters'
+import { favCharacterAdded, favCharacterRemoved } from '../../store/characters'
+import { favComicRemoved, favComicAdded } from '../../store/comics'
 
-const CardItem = ({ img, name, detailsUrl }) => {
+const CardItem = ({ img, name, id, detailsUrl, favCharacters, favComics }) => {
   const dispatch = useDispatch()
-  const { favorite } = useSelector((state) => state.characters)
+
+  const setFavAction = (id) => {
+    if (favCharacters)
+      return !favCharacters.includes(id)
+        ? dispatch(favCharacterAdded(id))
+        : dispatch(favCharacterRemoved(id))
+    else
+      return !favComics.includes(id)
+        ? dispatch(favComicAdded(id))
+        : dispatch(favComicRemoved(id))
+  }
+
   return (
     <Card>
       <CardActions>
         <FavButton
-          isFavorite={favorite.includes(name)}
-          action={() =>
-            !favorite.includes(name)
-              ? dispatch(favoriteAdded(name))
-              : dispatch(favoriteRemoved(name))
+          isFavorite={
+            !favCharacters ? favComics.includes(id) : favCharacters.includes(id)
           }
+          action={() => setFavAction(id)}
         />
       </CardActions>
       <CardLink to='/1'>

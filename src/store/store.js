@@ -3,9 +3,8 @@ import api from './middleware/api'
 import reducer from './rootReducers'
 
 //export function that returns the store
-console.log(reducer)
 
-export default function () {
+export default function store() {
   return configureStore({
     reducer,
     middleware: [...getDefaultMiddleware(), api],
