@@ -5,8 +5,8 @@ import { apiCallBegan } from './api'
 const slice = createSlice({
   name: 'characters',
   initialState: {
-    list: [],
-    favorite: [],
+    listCharacters: [],
+    favoriteCharacters: [],
     loading: false,
   },
   reducers: {
@@ -17,34 +17,39 @@ const slice = createSlice({
     charactersReceived: (state, action) => {
       //console.log(action.payload)
       state.loading = false
-      state.list = action.payload
+      state.listCharacters = action.payload
     },
-    favoriteAdded: (state, action) => {
-      state.favorite.push(action.payload)
+    favCharacterAdded: (state, action) => {
+      state.favoriteCharacters.push(action.payload)
     },
-    favoriteRemoved: (state, action) => {
-      state.favorite = state.favorite.filter((name) => name !== action.payload)
+    favCharacterRemoved: (state, action) => {
+      state.favoriteCharacters = state.favoriteCharacters.filter(
+        (name) => name !== action.payload,
+      )
     },
   },
 })
 
-let i = 1
 export const {
   charactersRequested,
   charactersReceived,
-  favoriteAdded,
-  favoriteRemoved,
+  favCharacterAdded,
+  favCharacterRemoved,
 } = slice.actions
 
 export const loadCharacters = () => (dispatch, getState) => {
   dispatch(
     apiCallBegan({
-      url: `/characters?apikey=${process.env.REACT_APP_API_KEY}&limit=18`,
+      url: `/characters?apikey=${process.env.REACT_APP_API_KEY}&limit=21`,
       method: 'GET',
       onStart: charactersRequested.type,
       onSuccess: charactersReceived.type,
     }),
   )
+}
+
+export const getFavoriteCharacters = (state, id) => {
+  return state.find((character) => character.id === id)
 }
 
 export default slice.reducer
