@@ -1,13 +1,11 @@
 import React from 'react'
-import CardItem from '../components/cardItem/CardItem'
+import CardItem from '../components/CardItem/CardItem'
 import { Cards, Container, Title } from '../GlobalStyles'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { getFavoriteCharacters, favoriteRemoved } from '../store/characters'
-import { getFavoriteComic } from '../store/comics'
+import { useSelector } from 'react-redux'
+import { getFavorite } from '../utils'
 
 const Favorite = () => {
-  const dispatch = useDispatch()
   const { favoriteCharacters, listCharacters } = useSelector(
     (state) => state.characters,
   )
@@ -18,7 +16,7 @@ const Favorite = () => {
       <Cards>
         {favoriteCharacters.length ? (
           favoriteCharacters.map((id) => {
-            let favCharacter = getFavoriteCharacters(listCharacters, id)
+            let favCharacter = getFavorite(listCharacters, id)
             return (
               <CardItem
                 img={
@@ -42,7 +40,7 @@ const Favorite = () => {
         <Cards>
           {favoriteComics.length ? (
             favoriteComics.map((id) => {
-              let favComic = getFavoriteComic(listComics, id)
+              let favComic = getFavorite(listComics, id)
               return (
                 <CardItem
                   img={

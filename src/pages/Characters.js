@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Cards, Container, Title } from '../GlobalStyles'
-import CardItem from '../components/cardItem/CardItem'
+import CardItem from '../components/CardItem/CardItem'
 
 import { useSelector, useDispatch } from 'react-redux' // useSelector grabs state similar to mapStateToProps
 import { loadCharacters } from '../store/characters'
 
-const Characters = () => {
+const Characters = ({ match }) => {
   const dispatch = useDispatch()
   const { listCharacters, loading, favoriteCharacters } = useSelector(
     (state) => state.characters,
@@ -13,11 +13,8 @@ const Characters = () => {
 
   useEffect(() => {
     if (!listCharacters.length) dispatch(loadCharacters())
-    console.log('rendered')
-    return () => {
-      console.log('unmounted')
-    }
-  }, [])
+    return () => {}
+  }, [dispatch, listCharacters.length])
 
   //get data back
   return (
@@ -34,6 +31,7 @@ const Characters = () => {
               key={character.id}
               id={character.id}
               favCharacters={favoriteCharacters}
+              detailsPath={match.path}
             />
           ))}
         </Cards>

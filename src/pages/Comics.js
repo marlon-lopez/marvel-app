@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Cards, Container, Title } from '../GlobalStyles'
-import CardItem from '../components/cardItem/CardItem'
+import CardItem from '../components/CardItem/CardItem'
 
 import { useSelector, useDispatch } from 'react-redux' // useSelector grabs state similar to mapStateToProps
 import { loadComics } from '../store/comics'
 
-const Comics = () => {
+const Comics = ({ match }) => {
   const dispatch = useDispatch()
   const { listComics, favoriteComics, loading } = useSelector(
     (state) => state.comics,
@@ -13,11 +13,8 @@ const Comics = () => {
 
   useEffect(() => {
     if (!listComics.length) dispatch(loadComics())
-    console.log('rendered')
-    return () => {
-      console.log('unmmounted')
-    }
-  }, [])
+    return () => {}
+  }, [dispatch, listComics.length])
   return (
     <Container>
       <Title>Comics</Title>
@@ -30,6 +27,7 @@ const Comics = () => {
               key={comic.id}
               id={comic.id}
               favComics={favoriteComics}
+              detailsPath={match.path}
             />
           ))}
         </Cards>
