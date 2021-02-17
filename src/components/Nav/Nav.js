@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 //icons
 import { IconContext } from 'react-icons/lib'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import { AiOutlineHeart } from 'react-icons/ai'
+
 //styles
 import {
   NavBar,
@@ -34,10 +36,15 @@ const Nav = () => {
               <NavLink to='/'>Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to='/about'>About</NavLink>
+              <NavLink to='/characters'>Characters</NavLink>
             </NavItem>
             <NavItem>
               <NavLink to='/comics'>Comics</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to='/favorite'>
+                <AiOutlineHeart />
+              </NavLink>
             </NavItem>
           </NavMenu>
         </NavContainer>

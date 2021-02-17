@@ -22,6 +22,16 @@ export const Container = styled.div`
   }
 `
 
+export const FlexContainer = styled(Container)`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  @media screen and (max-width: 960px) {
+    flex-direction: column;
+  }
+`
+
 export const ImgWrapper = styled.div`
   display: flex;
   max-width: 500px;
@@ -41,5 +51,20 @@ export const Img = styled.img`
   @media screen and (max-width: 920px) {
     max-height: 400px;
   }
+`
+export const Cards = styled.div`
+  margin: 24px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+  gap: 16px;
+  justify-content: center;
+`
+export const Title = styled.h2`
+  text-align: center;
+  margin: 24px 0;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 2px;
+  font-size: 2.3rem;
+  color: #161616;
 `
 export default GlobalStyles
