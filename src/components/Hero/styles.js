@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Container } from '../../GlobalStyles'
 
 export const HeroSection = styled.div`
   padding: 50px 0;
@@ -18,15 +17,6 @@ export const HeroSection = styled.div`
       #000000 28.77%,
       #802121 98.65%
     );
-  }
-`
-export const HeroContainer = styled(Container)`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  @media screen and (max-width: 960px) {
-    flex-direction: column;
   }
 `
 

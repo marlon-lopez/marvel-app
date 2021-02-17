@@ -1,12 +1,12 @@
 import React from 'react'
 //styles
-import { TextWrapper, ImgWrapper, Img } from '../../GlobalStyles'
-import { HeroSection, HeroContainer, Text } from './styles'
+import { TextWrapper, FlexContainer, ImgWrapper, Img } from '../../GlobalStyles'
+import { HeroSection, Text } from './styles'
 
 const Hero = () => {
   return (
     <HeroSection>
-      <HeroContainer>
+      <FlexContainer>
         <TextWrapper>
           <Text>The Marvel</Text>
           <Text>Comics Guide</Text>
@@ -14,7 +14,7 @@ const Hero = () => {
         <ImgWrapper>
           <Img src='img/Iron-man.png' />
         </ImgWrapper>
-      </HeroContainer>
+      </FlexContainer>
     </HeroSection>
   )
 }

@@ -7,6 +7,8 @@ const slice = createSlice({
   initialState: {
     listCharacters: [],
     favoriteCharacters: [],
+    comics: [],
+    series: [],
     loading: false,
   },
   reducers: {
@@ -27,6 +29,16 @@ const slice = createSlice({
         (name) => name !== action.payload,
       )
     },
+    comicsReceived: (state, action) => {
+      state.comics.push(action.payload[0])
+    },
+    seriesReceived: (state, action) => {
+      state.series.push(action.payload[0])
+    },
+    clearCharacterDetails: (state, action) => {
+      state.comics = []
+      state.series = []
+    },
   },
 })
 
@@ -35,6 +47,9 @@ export const {
   charactersReceived,
   favCharacterAdded,
   favCharacterRemoved,
+  comicsReceived,
+  seriesReceived,
+  clearCharacterDetails,
 } = slice.actions
 
 export const loadCharacters = () => (dispatch, getState) => {
@@ -47,9 +62,32 @@ export const loadCharacters = () => (dispatch, getState) => {
     }),
   )
 }
+export const getCharactersComic = (comics) => (dispatch, getState) => {
+  comics.forEach((comic) => {
+    dispatch(
+      apiCallBegan({
+        url: `/comics/${comic.resourceURI.split('/')[6]}?apikey=${
+          process.env.REACT_APP_API_KEY
+        }`,
+        method: 'GET',
+        onSuccess: comicsReceived.type,
+      }),
+    )
+  })
+}
 
-export const getFavoriteCharacters = (state, id) => {
-  return state.find((character) => character.id === id)
+export const getSeries = (series) => (dispatch, getState) => {
+  series.forEach((serie) => {
+    dispatch(
+      apiCallBegan({
+        url: `/series/${serie.resourceURI.split('/')[6]}?apikey=${
+          process.env.REACT_APP_API_KEY
+        }`,
+        method: 'GET',
+        onSuccess: seriesReceived.type,
+      }),
+    )
+  })
 }
 
 export default slice.reducer

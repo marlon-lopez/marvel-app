@@ -2,11 +2,11 @@ import React from 'react'
 import { Img, ImgWrapper } from '../../GlobalStyles'
 import { Card, CardName, CardActions, CardLink } from './styles'
 import FavButton from '../FavButton/FavButton'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { favCharacterAdded, favCharacterRemoved } from '../../store/characters'
 import { favComicRemoved, favComicAdded } from '../../store/comics'
 
-const CardItem = ({ img, name, id, detailsUrl, favCharacters, favComics }) => {
+const CardItem = ({ img, name, id, detailsPath, favCharacters, favComics }) => {
   const dispatch = useDispatch()
 
   const setFavAction = (id) => {
@@ -30,7 +30,7 @@ const CardItem = ({ img, name, id, detailsUrl, favCharacters, favComics }) => {
           action={() => setFavAction(id)}
         />
       </CardActions>
-      <CardLink to='/1'>
+      <CardLink to={detailsPath + '/' + id}>
         <ImgWrapper>
           <Img src={img} alt={name} />
         </ImgWrapper>
